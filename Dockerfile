@@ -1,5 +1,5 @@
 FROM php:5.6-apache
-#WORKDIR /var/www/html/
+
 RUN rm -rf /var/www/html/*
 RUN curl -L https://github.com/InvoicePlane/InvoicePlane/archive/v1.4.3.tar.gz | tar xz --strip-components=1
 COPY invoice-plane-docker-config-files/database.php application/config/database.php
@@ -20,9 +20,7 @@ RUN apt-get install nano -y
 ENV TERM=xterm
 
 RUN apt-get install wget unzip -y
-RUN wget http://translations.invoiceplane.com/download/project/fusioninvoice.zip
-RUN unzip fusioninvoice.zip -d tmp-lang/ && mv tmp-lang/*/* application/language/ && rm -rf tmp-lang
+RUN wget http://translations.invoiceplane.com/download/project/fusioninvoice.zip && unzip fusioninvoice.zip -d tmp-lang/ && mv tmp-lang/*/* application/language/ && rm -rf tmp-lang fusioninvoice.zip
 
 VOLUME /var/www/html/uploads
-#RUN mkdir application/config/development
 CMD ["init-invoicePlane.sh"]
