@@ -1,12 +1,11 @@
 invoiceplane:
-  build: 1twitif/invoiceplane
-#  build: docker-invoiceplane
+  image: 1twitif/invoiceplane
   ports :
    - "10180:80"
   volumes:
-#   - /srv/docker/invoicePlane/files:/var/www/html/
+   - /srv/docker/invoicePlane/uploads:/var/www/html/uploads
   links:
-   - database
+   - database:database
 phpmyadmin:
    image: corbinu/docker-phpmyadmin
    ports :
@@ -18,12 +17,10 @@ phpmyadmin:
     - database:mysql
 database:
   image: mysql:5.5
-#  ports:
-#   - "3306:3306"  
   volumes:
-#   - /srv/docker/invoicePlane/mysql:/var/lib/mysql/
+   - /srv/docker/invoicePlane/mysql:/var/lib/mysql/
   environment:
      - MYSQL_ROOT_PASSWORD=password
-     - MYSQL_DATABASE=mysite
+     - MYSQL_DATABASE=invoicePlane
      - MYSQL_USER=invoicePlane
      - MYSQL_PASSWORD=password
