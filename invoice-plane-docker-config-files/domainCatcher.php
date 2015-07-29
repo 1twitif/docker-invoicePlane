@@ -1,5 +1,5 @@
 <?php
-$safeDomain = preg_replace("/[/ ,;\\?]/g",'',substr($_GET['externDomain'],0,50));
+$safeDomain = preg_replace("/[^-_a-z0-9.:]/",'',substr($_GET['externDomain'],0,50));
 if($safeDomain) {
         $laConfig = file_get_contents("application/config/config.php");
         $laConfig = preg_replace("/config\['base_url'\]\s+= '';/", "config['base_url']     = 'http://".$safeDomain."/';", $laConfig);
@@ -7,7 +7,7 @@ if($safeDomain) {
         file_put_contents("application/config/config.php",$laConfig);
         unlink('index.php');
         rename('trueIndex.php','index.php');
-        http_redirect('./');
+        header('Location: ./');
 } else {
 ?>
 <script>
