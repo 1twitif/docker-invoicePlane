@@ -1,5 +1,5 @@
 # docker-invoicePlane
-ready to use invoicePlane container.
+ready to use multi-lang invoicePlane container.
 
 The automated build is available on Docker Hub : [1twitif/invoiceplane](https://hub.docker.com/r/1twitif/invoiceplane/)
 
