@@ -3,9 +3,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'database';
-$db['default']['username'] = 'invoicePlane';
-$db['default']['password'] = 'password';
-$db['default']['database'] = 'invoicePlane';
+$db['default']['username'] = getenv('DATABASE_ENV_MYSQL_USER');
+$db['default']['password'] = getenv('DATABASE_ENV_MYSQL_PASSWORD');
+$db['default']['database'] = getenv('DATABASE_ENV_MYSQL_DATABASE');
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

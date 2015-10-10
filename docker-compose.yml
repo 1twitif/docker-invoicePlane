@@ -1,5 +1,5 @@
 invoiceplane:
-  image: 1twitif/invoiceplane
+  build: .
   ports :
    - "10180:80"
   volumes:
